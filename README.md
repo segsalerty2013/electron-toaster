@@ -55,4 +55,19 @@ var msg = {
 ipc.send('electron-toaster-message', msg);
 ```
 
+## User interaction
+
+If you need to do some stuffs at the main process on toaster click or when toaster was closed by timeout.
+
+```javascript
+//in your main process. listen to the event 'electron-toaster-reply'. i.e
+ipc.on('electron-toaster-reply', (event, isAuto) => {
+    console.log('Toaster just spoke to me', isAuto);
+})
+```
+
+`isAuto` **parameter**:  
+`true` - if timeout was reached.
+`false` - if user interacted with toaster onclick. 
+
 ![screenshot](/screenshot.png)
